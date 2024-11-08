@@ -43,11 +43,45 @@ Flags:
 Use "englishprofile [command] --help" for more information about a command.
 
 $ ./englishprofile discover
+$ ./englishprofile worddata
+```
+
+### Check and View:
+
+```
+$ cat ~/.jq
+def profile_object:
+    to_entries | def parse_entry: {"key": .key, "value": .value | type}; map(parse_entry)
+        | sort_by(.key) | from_entries;
+
+def profile_array_objects:
+    map(profile_object) | map(to_entries) | reduce .[] as $item ([]; . + $item) | sort_by(.key) | from_entries;
+
+$ cat englishprofile.json | jq "profile_array_objects"
+{
+  "baseword": "string",
+  "guideword": "string",
+  "level": "string",
+  "partofspeech": "string",
+  "topic": "string",
+  "url": "string"
+}
+
+$ cat worddata.json | jq "profile_array_objects"
+{
+  "baseword": "string",
+  "guideword": "string",
+  "level": "string",
+  "partofspeech": "string",
+  "pronunciation": "string",
+  "senses": "array",
+  "topic": "string",
+  "url": "string",
+  "word_type": "string"
+}
 
 $ jq .[].baseword englishprofile.json | wc -l
    15696
-
-$ ./englishprofile worddata
 
 $ jq .[].baseword worddata.json | wc -l
    15696
