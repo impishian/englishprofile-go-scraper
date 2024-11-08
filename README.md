@@ -44,11 +44,11 @@ Use "englishprofile [command] --help" for more information about a command.
 
 $ ./englishprofile discover
 
-$ cat englishprofile.json
-...
+$ jq .[].baseword englishprofile.json | wc -l
+   15696
 
 $ ./englishprofile worddata
 
-$ cat worddata.json
-...
+$ jq .[].baseword worddata.json | wc -l
+   15696
 ```
