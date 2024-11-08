@@ -5,7 +5,7 @@ Small scraper to collect word data from https://www.englishprofile.org/wordlists
 
 Inspired by https://github.com/Granitosaurus/englishprofile-scraper
 
-### Data:
+### Data
 
 englishprofile.json for word previews
 
@@ -13,7 +13,9 @@ worddata.json for full dataset
 
 (last scraped 2024-11-08)
 
-### Build:
+----
+
+### Build
 
 ```
 $ go version
@@ -24,7 +26,7 @@ $ go mod tidy
 $ go build
 ```
 
-### Run:
+### Run
 
 ```
 $ ./englishprofile --help
@@ -46,7 +48,7 @@ $ ./englishprofile discover
 $ ./englishprofile worddata
 ```
 
-### Check and View:
+### Check and View
 
 ```
 $ cat ~/.jq
@@ -88,7 +90,7 @@ $ jq .[].baseword worddata.json | wc -l
 
 ```
 
-### By Level:
+#### By Level
 
 ```
 $ jq '.[] | select(.level == "A1")' worddata.json | jq -r '.baseword' | wc -l
@@ -120,7 +122,7 @@ $ jq '.[] | select(.level == "A1" or .level == "A2")' worddata.json | jq -r '.ba
 | C1+C2  | 6217  |
 | Total | 15696 |
 
-### By Topic:
+#### By Topic
 
 | Topic  | Count |
 | ------------- | ------------- |
@@ -157,6 +159,8 @@ $ jq '.[] | select(.topic == "")' worddata.json | jq -r '.baseword' | wc -l
 $ echo 6902+8794 | bc -l
 15696
 ```
+
+#### Remove Duplicate
 
 awk '!a[$0]++'  :  This one-liner removes duplicate lines from text input without pre-sorting.
 
