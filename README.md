@@ -156,9 +156,11 @@ $ jq '.[] | select(.topic == "")' worddata.json | jq -r '.baseword' | wc -l
 
 $ echo 6902+8794 | bc -l
 15696
+```
 
-# awk '!a[$0]++'  :  This one-liner removes duplicate lines from text input without pre-sorting.
+awk '!a[$0]++'  :  This one-liner removes duplicate lines from text input without pre-sorting.
 
+```
 $ jq '.[]'  worddata.json | jq -r '.baseword' | awk '!a[$0]++' | wc -l
     9763
 ```
