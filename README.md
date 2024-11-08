@@ -106,4 +106,13 @@ $ jq '.[] | select(.level == "C2")' worddata.json | jq -r '.baseword' | wc -l
 
 $ echo 784+1594+2937+4164+2410+3807 | bc -l
 15696
+
+$ jq '.[] | select(.level == "A1" or .level == "A2")' worddata.json | jq -r '.baseword' | wc -l
+    2378
+
+$ jq '.[] | select(.level == "B1" or .level == "B2")' worddata.json | jq -r '.baseword' | wc -l
+    7101
+
+$ jq '.[] | select(.level == "C1" or .level == "C2")' worddata.json | jq -r '.baseword' | wc -l
+    6217
 ```
