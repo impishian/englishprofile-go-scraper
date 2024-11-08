@@ -110,7 +110,7 @@ func scrapeWords(words []WordPreview, filename string, conLimit int, batchSize i
 
     f.WriteString("[\n")
 
-    var first = true // 用于跟踪是否是第一个元素
+    var first = true
 
     for i := 0; i < len(words); i += batchSize {
         end := i + batchSize
