@@ -86,33 +86,74 @@ $ jq .[].baseword englishprofile.json | wc -l
 $ jq .[].baseword worddata.json | wc -l
    15696
 
+```
+
+### By Level:
+
+```
 $ jq '.[] | select(.level == "A1")' worddata.json | jq -r '.baseword' | wc -l
      784
-
-$ jq '.[] | select(.level == "A2")' worddata.json | jq -r '.baseword' | wc -l
-    1594
-
-$ jq '.[] | select(.level == "B1")' worddata.json | jq -r '.baseword' | wc -l
-    2937
-
-$ jq '.[] | select(.level == "B2")' worddata.json | jq -r '.baseword' | wc -l
-    4164
-
-$ jq '.[] | select(.level == "C1")' worddata.json | jq -r '.baseword' | wc -l
-    2410
-
-$ jq '.[] | select(.level == "C2")' worddata.json | jq -r '.baseword' | wc -l
-    3807
+...
 
 $ echo 784+1594+2937+4164+2410+3807 | bc -l
 15696
+```
 
+| Level  | Count |
+| ------------- | ------------- |
+| A1  | 784  |
+| A2  | 1594  |
+| B1  | 2937  |
+| B2  | 4164  |
+| C1  | 2410  |
+| C2  | 3807  |
+| Total | 15696 |
+
+```
 $ jq '.[] | select(.level == "A1" or .level == "A2")' worddata.json | jq -r '.baseword' | wc -l
     2378
+```
+| Level  | Count |
+| ------------- | ------------- |
+| A1+A2  | 2378  |
+| B1+B2  | 7101  |
+| C1+C2  | 6217  |
+| Total | 15696 |
 
-$ jq '.[] | select(.level == "B1" or .level == "B2")' worddata.json | jq -r '.baseword' | wc -l
-    7101
+### By Topic:
 
-$ jq '.[] | select(.level == "C1" or .level == "C2")' worddata.json | jq -r '.baseword' | wc -l
-    6217
+| Topic  | Count |
+| ------------- | ------------- |
+| animals | 94 |
+| arts and media | 242 |
+| body and health | 356 |
+| clothes | 88 |
+| communication | 1225 |
+| crime | 84 |
+| describing things | 748 |
+| education | 92 |
+| food and drink | 253 |
+| homes and buildings | 170 |
+| money | 153 |
+| natural world | 261 |
+| people: actions | 952 |
+| people: appearance | 91 |
+| people: personality | 1053 |
+| politics | 72 |
+| relationships | 170 |
+| shopping | 205 |
+| sports and games | 0 |
+| technology | 161 |
+| travel | 231 |
+| work | 201 |
+| Total | 6902 |
+
+Topic is empty:
+
+```
+$ jq '.[] | select(.topic == "")' worddata.json | jq -r '.baseword' | wc -l
+    8794
+
+$ echo 6902+8794 | bc -l
+15696
 ```
