@@ -85,4 +85,25 @@ $ jq .[].baseword englishprofile.json | wc -l
 
 $ jq .[].baseword worddata.json | wc -l
    15696
+
+$ jq '.[] | select(.level == "A1")' worddata.json | jq -r '.baseword' | wc -l
+     784
+
+$ jq '.[] | select(.level == "A2")' worddata.json | jq -r '.baseword' | wc -l
+    1594
+
+$ jq '.[] | select(.level == "B1")' worddata.json | jq -r '.baseword' | wc -l
+    2937
+
+$ jq '.[] | select(.level == "B2")' worddata.json | jq -r '.baseword' | wc -l
+    4164
+
+$ jq '.[] | select(.level == "C1")' worddata.json | jq -r '.baseword' | wc -l
+    2410
+
+$ jq '.[] | select(.level == "C2")' worddata.json | jq -r '.baseword' | wc -l
+    3807
+
+$ echo 784+1594+2937+4164+2410+3807 | bc -l
+15696
 ```
